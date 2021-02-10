@@ -19,7 +19,7 @@ const secondSudent: Student = {
 
 const studentsList: Array<Student> = [ firstSudent, secondSudent ];
 
-const table = document.createElement('table') as HTMLTableElement;
+const table: HTMLTableElement = document.createElement('table');
 
 studentsList.forEach((student: Student) => {
   const row: HTMLTableRowElement = table.insertRow()
