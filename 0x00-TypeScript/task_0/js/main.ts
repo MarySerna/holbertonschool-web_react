@@ -10,43 +10,27 @@ const student1: Student = {
   lastName: "Isabel",
   age: 33,
   location: "Barcelona",
-};
+}
 
 const student2: Student = {
   firstName: "Juan",
   lastName: "Esteban",
   age: 44,
   location: "Miami",
-};
+}
 
 const studentsList: Student[] = [student1, student2];
 
-const body: HTMLElement = document.body;
+const table = document.createElement('table') as HTMLTableElement;
 
-const table: HTMLTableElement = document.createElement('table');
-table.innerHTML = `
-  <thead>
-    <tr>
-      <th colspan="2">Students</th>
-    </tr>
-  </thead>`;
-
-body.appendChild(table);
-
-const tbody: HTMLTableSectionElement = document.createElement('tbody');
-
-table.appendChild(tbody);
-  
-studentsList.forEach(({ firstName, location }: Student) => {
-  const tr: HTMLTableRowElement = document.createElement('tr');
-  const nameCell: HTMLTableDataCellElement = document.createElement('td');
-  const locationCell: HTMLTableCellElement = document.createElement('td');
-
-  nameCell.textContent = firstName;
-  locationCell.textContent = location;
-
-  tr.appendChild(nameCell);
-  tr.appendChild(locationCell);
-
-  tbody.appendChild(tr);
+studentsList.forEach((student: Student) => {
+  const row = table.insertRow()
+  const name = document.createElement('td');
+  const location = document.createElement('td');
+  name.textContent = student.firstName;
+  location.textContent = student.location;
+  row.appendChild(name);
+  row.appendChild(location);
 });
+
+document.body.appendChild(table);
