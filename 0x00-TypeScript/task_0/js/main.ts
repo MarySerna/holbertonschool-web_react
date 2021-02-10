@@ -34,6 +34,7 @@ interface Student {
   body.appendChild(table);
   
   const tbody: HTMLTableSectionElement = document.createElement('tbody');
+  
   table.appendChild(tbody);
   
   studentsList.forEach(({ firstName, location }: Student) => {
