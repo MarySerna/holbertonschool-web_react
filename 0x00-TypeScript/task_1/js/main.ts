@@ -32,12 +32,18 @@ const director1: Directors = {
 };
 console.log(director1);
 
-// returns a Teacher's name in this format: S. Cheung
-function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName[0]}. ${lastName}`;
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
 }
 
-console.log(printTeacher('John', 'Doe'));
+const printTeacher: printTeacherFunction = function (
+  firstName: string,
+  lastName: string
+): string {
+  return `${firstName.charAt(0)}. ${lastName}`;
+};
+
+//console.log(printTeacher('John', 'Doe'));
 
 // class description interface
 interface classInterface {
