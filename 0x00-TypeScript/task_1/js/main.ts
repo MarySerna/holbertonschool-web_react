@@ -45,18 +45,20 @@ export const printTeacher: printTeacherFunction = function (
   return `${firstName.charAt(0)}. ${lastName}`;
 };
 
-// console.log(printTeacher("John", "Doe"));
+console.log(printTeacher("John", "Doe"));
 
 interface StudentConstructor {
-  new (firstName: string, lastName: string): StudentClassInterface;
+  new(firstName: string, lastName: string): StudentClassInterface;
 }
 
 interface StudentClassInterface {
+  firstName: string;
+  lastName: string;
   workOnHomework(): string;
   displayName(): string;
 }
 
-export class StudentClass implements StudentClassInterface {
+export const StudentClass: StudentConstructor = class StudentClass implements StudentClassInterface {
   firstName: string;
   lastName: string;
 
