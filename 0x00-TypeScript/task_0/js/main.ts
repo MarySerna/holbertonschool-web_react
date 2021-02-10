@@ -20,19 +20,17 @@ const secondSudent: Student = {
 const studentsList: Array<Student> = [ firstSudent, secondSudent ];
 
 const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
-
 const table: HTMLTableElement = document.createElement('table');
+const tbody: HTMLTableSectionElement = document.createElement("tbody");
 
 studentsList.forEach((student: Student) => {
-  const row: HTMLTableRowElement = table.insertRow()
-  const name: HTMLTableCellElement = document.createElement('td');
-  const location: HTMLTableCellElement = document.createElement('td');
-  
-  name.textContent = student.firstName;
-  location.textContent = student.location;
+  const row: HTMLTableRowElement = tbody.insertRow(0);
+  const cell1: HTMLTableCellElement = row.insertCell(0);
+  const cell2: HTMLTableCellElement = row.insertCell(1);
 
-  row.appendChild(name);
-  row.appendChild(location);
+  cell1.innerHTML = student.firstName;
+  cell2.innerHTML = student.location;
 });
 
+table.append(tbody);
 body.append(table);
