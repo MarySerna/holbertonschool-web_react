@@ -1,7 +1,8 @@
-interface DirectorsInterface {
+// TASK 5 Advanced types Part 1 ===============
+interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
-  workDirectorTasks(): string; 
+  workDirectorTasks(): string;
 }
 
 interface TeacherInterface {
@@ -10,54 +11,48 @@ interface TeacherInterface {
   workTeacherTasks(): string;
 }
 
-class Director implements DirectorsInterface {
+export class Director implements DirectorInterface {
   workFromHome(): string {
-    return 'Working from home';
+    return "Working from home";
   }
   getCoffeeBreak(): string {
-    return 'Getting a coffee break';
+    return "Getting a coffee break";
   }
   workDirectorTasks(): string {
-    return 'Getting to director tasks';
+    return "Getting to director tasks";
   }
 }
 
-class Teacher implements TeacherInterface {
+export class Teacher implements TeacherInterface {
   workFromHome(): string {
-    return 'Cannot work from home';
+    return "Cannot work from home";
   }
-  getCoffeeBreak(): string {
-    return 'Cannot have a break';
+  getCoffeeBreak() {
+    return "Cannot have a break";
   }
-  workTeacherTasks(): string {
-    return 'Getting to work';
+  workTeacherTasks() {
+    return "Getting to work";
   }
 }
 
-function createEmployee(firstName: string, lastName: string, salary: number | string): Director | Teacher {
-  if (salary as number && salary < 500) return new Teacher();
-  else return new Director(); 
+export function createEmployee(salary: number | string): DirectorInterface | TeacherInterface {
+  if (typeof salary === 'number' && salary < 500) return new Teacher();
+  return new Director();
 }
 
-console.log(createEmployee('Guillaume', 'Salva', 200));
-console.log(createEmployee('John', 'Doe', 1000));
-console.log(createEmployee('Gerard', 'Zuck', '$500'));
-
-function isDirector(employee: Director | Teacher): employee is Director {
-  return (employee instanceof Director) ? true : false;
+export function isDirector(employee: DirectorInterface | TeacherInterface):  employee is Director {
+  return employee.workFromHome() === 'Working from home';
 }
 
-function executeWork(employee: Director | Teacher): string {
-  return isDirector(employee) ? employee.workDirectorTasks() : employee.workTeacherTasks();
+export function executeWork(employee: DirectorInterface | TeacherInterface): string {
+  if (isDirector(employee)) return employee.workDirectorTasks();
+  return employee.workTeacherTasks();
 }
-
-console.log(executeWork(createEmployee('Guillaume', 'Salva', 200)));
-console.log(executeWork(createEmployee('John', 'Doe', 1000)));
 
 type Subjects = 'Math' | 'History';
-function teachClass(todayClass: Subjects): string{
-  return todayClass === 'Math' ? 'Teaching Math' : 'Teaching History';
+export function teachClass(todayClass:Subjects): string {
+  if(todayClass === 'Math')
+      return 'Teaching Math';
+  else if (todayClass === 'History')
+      return 'Teaching History';
 }
-
-console.log(teachClass('Math'));
-console.log(teachClass('History'));
