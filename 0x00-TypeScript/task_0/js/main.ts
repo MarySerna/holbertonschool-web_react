@@ -19,16 +19,20 @@ const secondSudent: Student = {
 
 const studentsList: Array<Student> = [ firstSudent, secondSudent ];
 
+const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+
 const table: HTMLTableElement = document.createElement('table');
 
 studentsList.forEach((student: Student) => {
   const row: HTMLTableRowElement = table.insertRow()
   const name: HTMLTableCellElement = document.createElement('td');
   const location: HTMLTableCellElement = document.createElement('td');
+  
   name.textContent = student.firstName;
   location.textContent = student.location;
+
   row.appendChild(name);
   row.appendChild(location);
 });
 
-document.body.appendChild(table);
+body.append(table);
