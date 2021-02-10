@@ -72,6 +72,6 @@ class StudentClass implements classInterface {
 }
 
 // creating instance of StudentClass
-const studentClass: StudentClass = new StudentClass('sofia', 'cheung');
+const studentClass: StudentClass = new StudentClass('Mary', 'Serna');
 console.log(studentClass.displayName());
 console.log(studentClass.workOnHomework());
