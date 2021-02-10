@@ -4,31 +4,37 @@ interface Student {
   age: number;
   location: string;
 }
+
 const firstSudent: Student = {
   firstName: 'Shakira',
   lastName: 'Doe',
   age: 18,
   location: 'Miami',
-}
+};
+
 const secondSudent: Student = {
   firstName: 'Juan',
   lastName: 'Doe',
   age: 35,
   location: 'New York',
-}
+};
 
 const studentsList: Array<Student> = [ firstSudent, secondSudent ];
 
-const table = document.createElement('table') as HTMLTableElement;
+const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
-studentsList.forEach((student: Student) => {
-  const row = table.insertRow()
-  const name = document.createElement('td');
-  const location = document.createElement('td');
-  name.textContent = student.firstName;
-  location.textContent = student.location;
-  row.appendChild(name);
-  row.appendChild(location);
+const table: HTMLTableElement = document.createElement('table');
+const thead: HTMLTableSectionElement = document.createElement('thead');
+const tbody: HTMLTableSectionElement = document.createElement('tbody');
+
+studentsList.forEach((student) => {
+  const row: HTMLTableRowElement = tbody.insertRow(0);
+  const cell1: HTMLTableCellElement = row.insertCell(0);
+  const cell2: HTMLTableCellElement = row.insertCell(1);
+
+  cell1.innerHTML = student.firstName;
+  cell2.innerHTML = student.location;
 });
 
-document.body.appendChild(table);
+table.append(tbody);
+body.append(table);
