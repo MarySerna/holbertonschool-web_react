@@ -1,58 +1,62 @@
-// Teacher interface
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
   fullTimeEmployee: boolean;
-  location: string;
   yearsOfExperience?: number;
+  location: string;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   [propName: string]: any;
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 }
 
-// Directors interface
+// const teacher3: Teacher = {
+//   firstName: "John",
+//   fullTimeEmployee: false,
+//   lastName: "Doe",
+//   location: "London",
+//   contract: false,
+// };
+
+// console.log(teacher3);
+
 interface Directors extends Teacher {
   numberOfReports: number;
 }
 
-// Creating a teacher and a director
-const teacher3: Teacher = {
-  firstName: 'John',
-  fullTimeEmployee: false,
-  lastName: 'Doe',
-  location: 'London',
-  contract: false,
-};
-console.log(teacher3);
+// const director1: Directors = {
+//   firstName: "John",
+//   lastName: "Doe",
+//   location: "London",
+//   fullTimeEmployee: true,
+//   numberOfReports: 17,
+// };
+// console.log(director1);
 
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
-};
-console.log(director1);
-
-function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName[0]}. ${lastName}`;
+/* eslint-disable @typescript-eslint/class-name-casing */
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
 }
 
-console.log(printTeacher('John', 'Doe'));
+/* eslint-enable @typescript-eslint/class-name-casing */
+export const printTeacher: printTeacherFunction = function (
+  firstName: string,
+  lastName: string
+): string {
+  return `${firstName.charAt(0)}. ${lastName}`;
+};
 
-// class description interface
-interface classInterface {
-  firstName: string;
-  lastName: string;
+// console.log(printTeacher("John", "Doe"));
+
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+interface StudentClassInterface {
   workOnHomework(): string;
   displayName(): string;
 }
 
-// constructor description interface
-interface classConstructor {
-  new (firstName: string, lastName: string): classInterface;
-}
-
-// Creating class and constructor through interfaces 
-class StudentClass implements classInterface {
+export class StudentClass implements StudentClassInterface {
   firstName: string;
   lastName: string;
 
@@ -62,15 +66,10 @@ class StudentClass implements classInterface {
   }
 
   workOnHomework(): string {
-    return 'Currently working';
+    return "Currently working";
   }
 
   displayName(): string {
     return this.firstName;
   }
 }
-
-// creating instance of StudentClass
-const studentClass: StudentClass = new StudentClass('Mary', 'Serna');
-console.log(studentClass.displayName());
-console.log(studentClass.workOnHomework());
