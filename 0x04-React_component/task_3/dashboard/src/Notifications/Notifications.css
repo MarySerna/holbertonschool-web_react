@@ -1,22 +1,31 @@
+:root {
+  --main-color: #e01d3f;
+}
+
+.menuItem {
+  text-align: right;
+}
+
 .Notifications {
-    float:right;
-    padding: 2rem;
-    border: 2px dashed #e2374c;
+  float: right;
+  border: 3px dashed var(--main-color);
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
-.menuItems {
-    display: flex;
-    justify-content: flex-end;
+.Notifications button img {
+  width: 10px;
 }
 
-li[data-notification-type="default"] {
-    color: blue;
+.Notifications p {
+  margin: 0;
+  margin-top: 15px;
 }
 
-li[data-notification-type="urgent"] {
-    color: #e2374c;
+[data-notification-type="default"] {
+  color: blue;
 }
 
-.Notifications button {
-    float: right;
+[data-notification-type="urgent"] {
+  color: red;
 }

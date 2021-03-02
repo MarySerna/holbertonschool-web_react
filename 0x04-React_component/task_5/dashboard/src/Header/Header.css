@@ -1,8 +1,14 @@
-.App-header {
+:root {
+  --main-color: #e01d3f;
+}
+
+.header {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  color: #e2374c;
-  border-bottom: 4px solid #e2374c;
-  width: 100%;
+  color: var(--main-color);
+  font-size: 20px;
+}
+
+.header img {
+  width: 200px;
 }
